@@ -1,0 +1,7 @@
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\obj\Debug\Refrigerator.csprojAssemblyReference.cache
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\obj\Debug\Refrigerator.csproj.CoreCompileInputs.cache
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\bin\Debug\Refrigerator.exe.config
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\bin\Debug\Refrigerator.exe
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\bin\Debug\Refrigerator.pdb
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\obj\Debug\Refrigerator.exe
+C:\Users\asvrl\source\repos\Refrigerator\Refrigerator\obj\Debug\Refrigerator.pdb

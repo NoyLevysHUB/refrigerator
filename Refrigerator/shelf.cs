@@ -10,7 +10,7 @@ namespace Refrigerator
     {
         public int id { get; set; }
         private int level { get; set; }
-        private double spaceInShelf { get; set; }
+        public double spaceInShelf { get; set; }
         public List<item> Items { get; set; }
         public shelf (int level, double spaceleft, List<item> Items)
         {

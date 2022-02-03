@@ -80,7 +80,7 @@ namespace Refrigerator
             
         }
 
-        public void removeIfExpired()
+        public void throwExpiredItems()
         {
             int idToThrow; 
             foreach (shelf shelf in Shelves)
@@ -100,7 +100,7 @@ namespace Refrigerator
         public void WhatCanIEat(cosher cosher, kind kind)
         {
             string whatYouCanEat= "you can eat:";
-            removeIfExpired();
+            throwExpiredItems();
             foreach (shelf shelf in Shelves)
             {
                 foreach (item item in shelf.Items)
@@ -115,7 +115,92 @@ namespace Refrigerator
             Console.WriteLine(whatYouCanEat);
         }
 
+        public List<item> sortByExpirationDate()
+        {
+            List<item> SortedList = new List<item>();
+            foreach (shelf shelf in Shelves)
+            {
+                SortedList.AddRange(shelf.Items); 
+            }
+            SortedList.Sort((x, y) => x.experationDate.CompareTo(y.experationDate));
+            return SortedList;
+        }
         
+        public List<shelf> sortBySpaceLeft()
+        {
+            List<shelf> sortedshelves = new List<shelf>();
+            sortedshelves.AddRange(Shelves);
+            sortedshelves.Sort((x, y) => (int)(x.spaceLeftOnShelf() - y.spaceLeftOnShelf()));
+            return sortedshelves; 
+        }
+
+        public void removeAboutToExpireDiaryItems()
+        {
+            foreach (shelf shelf in Shelves)
+            {
+                foreach (item item in shelf.Items)
+                {
+                    DateTime date1 = item.experationDate.AddDays(3);
+
+                    if (item.cosher == cosher.diary && date1 <= item.experationDate)
+                        shelf.Items.Remove(item);
+
+                }
+            }
+        }
+
+        public void removeAboutToExpireMeatItems()
+        {
+            foreach (shelf shelf in Shelves)
+            {
+                foreach (item item in shelf.Items)
+                {
+                    DateTime date1 = item.experationDate.AddDays(7);
+
+                    if (item.cosher == cosher.meat && date1 <= item.experationDate)
+                        shelf.Items.Remove(item);
+
+                }
+            }
+        }
+
+        public void removeAboutToExpireParveItems()
+        {
+            foreach (shelf shelf in Shelves)
+            {
+                foreach (item item in shelf.Items)
+                {
+                    DateTime date1 = item.experationDate.AddDays(1);
+
+                    if (item.cosher == cosher.parve && date1 <= item.experationDate)
+                        shelf.Items.Remove(item);
+
+                }
+            }
+        }
+
+        public void beforeShopping()
+        {
+            //העתקים של כל הרשימות של האייטמים במקרר
+            //רשימה של דברים שאפשר למחוק
+            if(this.spaceLeftInRefrigerator()<29)
+            {
+                
+                throwExpiredItems();
+                if (this.spaceLeftInRefrigerator()<29)
+                {
+                    removeAboutToExpireDiaryItems();
+                    if (this.spaceLeftInRefrigerator() < 29)
+                    {
+                        removeAboutToExpireMeatItems();
+                        if(this.spaceLeftInRefrigerator() < 29)
+                        {
+                            removeAboutToExpireParveItems();
+                        }
+                    }
+                }
+            }
+        }
     }
 
             
